@@ -4,6 +4,7 @@ import { css, CacheProvider, Global, ThemeProvider } from '@emotion/react';
 import { cache } from '@emotion/css';
 
 import SanitizeCSS from 'styles/sanitize';
+import dracula from "themes/dracula";
 
 export default class CustomApp extends App {
   render() {
@@ -32,7 +33,7 @@ export default class CustomApp extends App {
             }
           `}
         />
-        <ThemeProvider theme={{}}>
+        <ThemeProvider theme={dracula}>
           <Component {...pageProps} />
         </ThemeProvider>
       </CacheProvider>
