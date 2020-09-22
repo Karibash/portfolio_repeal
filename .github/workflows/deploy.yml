@@ -17,10 +17,10 @@ jobs:
           npm install
       - name: Build
         run: |
-          npm build
+          npm run build
       - name: Export
         run: |
-          npm export
+          npm run export
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         env:
