@@ -1,0 +1,29 @@
+name: deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install
+        run: |
+          npm install
+      - name: Build
+        run: |
+          npm build
+      - name: Export
+        run: |
+          npm export
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        env:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          cname: karibash.com
