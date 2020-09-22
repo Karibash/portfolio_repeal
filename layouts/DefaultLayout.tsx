@@ -3,10 +3,16 @@ import Head from 'next/head';
 import styled from '@emotion/styled';
 
 import ParallaxParticles from "components/ParallaxParticles";
+import ScreenDoorEffect from "components/ScreenDoorEffect";
 
 const Wrapper = styled.div`
   color: ${props => props.theme.color.foreground[500].string()};
   background-color: ${props => props.theme.color.background[500].string()};
+`;
+
+const Main = styled.main`
+  min-width: 100vw;
+  min-height: 100vh;
 `;
 
 const FixedBackground = styled(ParallaxParticles)`
@@ -21,7 +27,14 @@ const FixedBackground = styled(ParallaxParticles)`
   min-height: 100vh;
 `;
 
-const Main = styled.main`
+const FixedScreenDoorEffect = styled(ScreenDoorEffect)`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
   min-width: 100vw;
   min-height: 100vh;
 `;
@@ -41,6 +54,7 @@ const DefaultLayout: React.FC<{
       <Main>
         {children}
       </Main>
+      <FixedScreenDoorEffect />
     </Wrapper>
   );
 };
