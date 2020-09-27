@@ -22,7 +22,7 @@ export default class CustomApp extends App {
             styles={css`
             ${SanitizeCSS}
             body {
-              font-family: 'Noto Sans JP', sans-serif;
+              font-family: 'Roboto', sans-serif;
             }
             :focus {
               outline: none;
