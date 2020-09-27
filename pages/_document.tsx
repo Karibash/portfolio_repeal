@@ -16,8 +16,8 @@ export default class CustomDocument extends Document<EmotionCritical> {
       <Html lang="ja">
         <Head>
           <meta charSet="utf-8" />
-          <meta name="viewport" content="initial-scale=1.0, width=device-width" key="viewport" />
           <meta name="author" content="Karibash" />
+          <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
           <style
             data-emotion-css={this.props.ids.join(' ')}
             dangerouslySetInnerHTML={{ __html: this.props.css }}

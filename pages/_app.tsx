@@ -1,5 +1,6 @@
 import React from "react";
 import App from 'next/app';
+import Head from "next/head";
 import { css, CacheProvider, Global, ThemeProvider } from '@emotion/react';
 import { cache } from '@emotion/css';
 
@@ -10,10 +11,15 @@ export default class CustomApp extends App {
   render() {
     const {Component, pageProps} = this.props;
 
+    // noinspection HtmlRequiredTitleElement
     return (
-      <CacheProvider value={cache}>
-        <Global
-          styles={css`
+      <>
+        <Head>
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" key="viewport" />
+        </Head>
+        <CacheProvider value={cache}>
+          <Global
+            styles={css`
             ${SanitizeCSS}
             body {
               font-family: 'Noto Sans JP', sans-serif;
@@ -32,11 +38,12 @@ export default class CustomApp extends App {
               position: relative;
             }
           `}
-        />
-        <ThemeProvider theme={dracula}>
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </CacheProvider>
+          />
+          <ThemeProvider theme={dracula}>
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </CacheProvider>
+      </>
     );
   }
 };
