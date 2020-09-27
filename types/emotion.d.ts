@@ -9,6 +9,7 @@ declare module '@emotion/react' {
       background: MaterialColor,
       primary1: MaterialColor,
       primary2: MaterialColor,
+      primary3: MaterialColor,
     },
   }
 }

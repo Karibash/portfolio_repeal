@@ -1,9 +1,10 @@
 import { Theme } from '@emotion/react';
 
-import Charade from "themes/dracula/colors/Charade";
-import SpringWood from "themes/dracula/colors/SpringWood";
-import PersianPink from "./colors/PersianPink";
-import Lavender from "./colors/Lavender";
+import Carnation from 'themes/dracula/colors/Carnation';
+import Charade from 'themes/dracula/colors/Charade';
+import Lavender from 'themes/dracula/colors/Lavender';
+import PersianPink from 'themes/dracula/colors/PersianPink';
+import SpringWood from 'themes/dracula/colors/SpringWood';
 
 const DraculaTheme: Theme = {
   color: {
@@ -11,6 +12,7 @@ const DraculaTheme: Theme = {
     background: Charade,
     primary1: PersianPink,
     primary2: Lavender,
+    primary3: Carnation,
   },
 };
 
