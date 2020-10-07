@@ -3,10 +3,10 @@ import { useMedia } from 'react-use';
 import { useIsClient } from 'hooks/useIsClient';
 
 export const BreakPoint = {
-  sm: 640,
-  md: 768,
-  lg: 1024,
-  xl: 1280,
+  small: 640,
+  medium: 768,
+  large: 1024,
+  huge: 1280,
 } as const;
 export type BreakPoint = typeof BreakPoint[keyof typeof BreakPoint];
 
