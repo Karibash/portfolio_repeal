@@ -9,20 +9,24 @@ import {
   WideDirection,
 } from "hooks/useMediaQuery";
 
-const MediaQueryContext = createContext({
-  tiny: false,
-  small: false,
-  medium: false,
-  large: false,
-  huge: false,
-});
+export const BreakPoint = {
+  Tiny: 'tiny',
+  Small: 'small',
+  Medium: 'medium',
+  Large: 'large',
+} as const;
+export type BreakPoint = typeof BreakPoint[keyof typeof BreakPoint];
 
 export type BreakPoints = {
-  readonly tiny: number;
-  readonly small: number;
-  readonly medium: number;
-  readonly large: number;
+  readonly [K in BreakPoint]: number;
 };
+
+const MediaQueryContext: React.Context<{
+  readonly [K in (BreakPoint | 'huge')]: boolean;
+}> = createContext({
+  ...Object.assign({}, ...Object.values(BreakPoint).map(key => ({[key]: false}))),
+  huge: false,
+});
 
 type Props = {
   readonly breakPoints: BreakPoints;
