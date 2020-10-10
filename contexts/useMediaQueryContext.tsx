@@ -21,11 +21,18 @@ export type Thresholds = {
   readonly [K in BreakPoint]: number;
 };
 
-const MediaQueryContext: React.Context<{
+export const Match = {
+  ...BreakPoint,
+  Huge: 'huge',
+} as const;
+export type Match = typeof Match[keyof typeof Match];
+
+export type Matches = {
   readonly [K in (BreakPoint | 'huge')]: boolean;
-}> = createContext({
-  ...Object.assign({}, ...Object.values(BreakPoint).map(key => ({[key]: false}))),
-  huge: false,
+};
+
+const MediaQueryContext: React.Context<Matches> = createContext({
+  ...Object.assign({}, ...Object.values(Match).map(key => ({[key]: false}))),
 });
 
 type Props = {
