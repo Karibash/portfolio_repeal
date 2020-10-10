@@ -17,7 +17,7 @@ export const BreakPoint = {
 } as const;
 export type BreakPoint = typeof BreakPoint[keyof typeof BreakPoint];
 
-export type BreakPoints = {
+export type Thresholds = {
   readonly [K in BreakPoint]: number;
 };
 
@@ -29,27 +29,27 @@ const MediaQueryContext: React.Context<{
 });
 
 type Props = {
-  readonly breakPoints: BreakPoints;
+  readonly thresholds: Thresholds;
 };
 export const MediaQueryContextProvider: React.FC<Props> = ({
   children,
-  breakPoints,
+  thresholds,
 }) => {
-  useMediaQuery(new SizeQuery(breakPoints.tiny, WideDirection.Width, SizeCondition.Max));
-  const tiny = useMediaQuery(new SizeQuery(breakPoints.tiny, WideDirection.Width, SizeCondition.Max));
+  useMediaQuery(new SizeQuery(thresholds.tiny, WideDirection.Width, SizeCondition.Max));
+  const tiny = useMediaQuery(new SizeQuery(thresholds.tiny, WideDirection.Width, SizeCondition.Max));
   const small = useMediaQuery(new CombineQuery(CombineCondition.And,
-    new SizeQuery(breakPoints.tiny + 1, WideDirection.Width, SizeCondition.Min),
-    new SizeQuery(breakPoints.small, WideDirection.Width, SizeCondition.Max),
+    new SizeQuery(thresholds.tiny + 1, WideDirection.Width, SizeCondition.Min),
+    new SizeQuery(thresholds.small, WideDirection.Width, SizeCondition.Max),
   ));
   const medium = useMediaQuery(new CombineQuery(CombineCondition.And,
-    new SizeQuery(breakPoints.small + 1, WideDirection.Width, SizeCondition.Min),
-    new SizeQuery(breakPoints.medium, WideDirection.Width, SizeCondition.Max),
+    new SizeQuery(thresholds.small + 1, WideDirection.Width, SizeCondition.Min),
+    new SizeQuery(thresholds.medium, WideDirection.Width, SizeCondition.Max),
   ));
   const large = useMediaQuery(new CombineQuery(CombineCondition.And,
-    new SizeQuery(breakPoints.medium + 1, WideDirection.Width, SizeCondition.Min),
-    new SizeQuery(breakPoints.large, WideDirection.Width, SizeCondition.Max),
+    new SizeQuery(thresholds.medium + 1, WideDirection.Width, SizeCondition.Min),
+    new SizeQuery(thresholds.large, WideDirection.Width, SizeCondition.Max),
   ));
-  const huge = useMediaQuery(new SizeQuery(breakPoints.large + 1, WideDirection.Width, SizeCondition.Min));
+  const huge = useMediaQuery(new SizeQuery(thresholds.large + 1, WideDirection.Width, SizeCondition.Min));
 
   const value = useMemo(() => ({
     tiny,

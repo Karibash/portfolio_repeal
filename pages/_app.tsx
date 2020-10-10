@@ -4,11 +4,11 @@ import Head from "next/head";
 import { css, CacheProvider, Global, ThemeProvider } from '@emotion/react';
 import { cache } from '@emotion/css';
 
-import { BreakPoints, MediaQueryContextProvider } from "contexts/useMediaQueryContext";
+import { MediaQueryContextProvider, Thresholds } from "contexts/useMediaQueryContext";
 import SanitizeCSS from 'styles/sanitize';
 import dracula from "themes/dracula";
 
-const breakPoints: BreakPoints = {
+const breakPointThresholds: Thresholds = {
   tiny: 640,
   small: 768,
   medium: 1024,
@@ -48,7 +48,7 @@ export default class CustomApp extends App {
           `}
           />
           <ThemeProvider theme={dracula}>
-            <MediaQueryContextProvider breakPoints={breakPoints}>
+            <MediaQueryContextProvider thresholds={breakPointThresholds}>
               <Component {...pageProps} />
             </MediaQueryContextProvider>
           </ThemeProvider>
