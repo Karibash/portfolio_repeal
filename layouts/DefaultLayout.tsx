@@ -11,6 +11,7 @@ const Wrapper = styled.div`
 `;
 
 const Main = styled.main`
+  position: relative;
   min-width: 100vw;
   min-height: 100vh;
 `;

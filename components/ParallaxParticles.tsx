@@ -52,7 +52,7 @@ const ParallaxParticles: React.FC<Props> = ({
           },
         },
         interactivity: {
-          detectsOn: InteractivityDetect.canvas,
+          detectsOn: InteractivityDetect.window,
           events: {
             resize: true,
             onHover: {
