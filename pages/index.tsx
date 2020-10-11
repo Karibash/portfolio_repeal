@@ -7,12 +7,15 @@ import GlitchText from 'components/GlitchText';
 import Rows from 'components/Rows';
 import { useMediaQueryContext } from 'contexts/useMediaQueryContext';
 import { useAdaptiveFontSize } from 'hooks/useAdaptiveFontSize';
+import { useWindowSize } from 'hooks/useWindowSize';
 import DefaultLayout from 'layouts/DefaultLayout';
 
-const Container = styled(Columns)`
+const Container = styled(Columns)<{
+  readonly height: number;
+}>`
   justify-content: flex-end;
   width: 100vw;
-  height: 100vh;
+  height: ${props => props.height}px;
   padding: 2rem;
 `;
 
@@ -64,6 +67,7 @@ const Separation = styled.div`
 
 const IndexPage: React.FC = () => {
   const theme = useTheme();
+  const windowSize = useWindowSize();
   const mediaQuery = useMediaQueryContext();
   const fontSize = useAdaptiveFontSize({
     tiny: 1,
@@ -78,7 +82,7 @@ const IndexPage: React.FC = () => {
 
   return (
     <DefaultLayout>
-      <Container>
+      <Container height={windowSize.height}>
         <Title fontSize={fontSize}>
           <div>Hi<Emphasis>,</Emphasis> there</div>
           <div>I<Emphasis>'</Emphasis>m <Name text="Karibash" {...glitchProperties} /></div>
