@@ -17,6 +17,7 @@ export default class CustomDocument extends Document<EmotionCritical> {
         <Head>
           <meta charSet="utf-8" />
           <meta name="author" content="Karibash" />
+          <meta name="description" content="This is the homepage of Karibash, a programmer living in Japan." />
           <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet" />
           <style
             data-emotion-css={this.props.ids.join(' ')}
