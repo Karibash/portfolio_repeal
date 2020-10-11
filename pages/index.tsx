@@ -1,7 +1,9 @@
 import React from 'react';
+import { useTheme } from "@emotion/react";
 import styled from '@emotion/styled';
 
 import Columns from 'components/Columns';
+import GlitchText from 'components/GlitchText';
 import Rows from 'components/Rows';
 import { useMediaQueryContext } from 'contexts/useMediaQueryContext';
 import { useAdaptiveFontSize } from 'hooks/useAdaptiveFontSize';
@@ -27,8 +29,8 @@ const Emphasis = styled.em`
   color: ${props => props.theme.color.primary3[500].string()};
 `;
 
-const Name = styled.div`
-  display: inline;
+const Name = styled(GlitchText)`
+  display: inline-flex;
   font-weight: 500;
 `;
 
@@ -61,6 +63,7 @@ const Separation = styled.div`
 `;
 
 const IndexPage: React.FC = () => {
+  const theme = useTheme();
   const mediaQuery = useMediaQueryContext();
   const fontSize = useAdaptiveFontSize({
     tiny: 1,
@@ -68,12 +71,17 @@ const IndexPage: React.FC = () => {
     medium: 4,
   });
 
+  const glitchProperties = {
+    textColor: theme.color.foreground[500],
+    shadowColor: theme.color.primary3[500],
+  };
+
   return (
     <DefaultLayout>
       <Container>
         <Title fontSize={fontSize}>
           <div>Hi<Emphasis>,</Emphasis> there</div>
-          <div>I<Emphasis>'</Emphasis>m <Name>Karibash</Name></div>
+          <div>I<Emphasis>'</Emphasis>m <Name text="Karibash" {...glitchProperties} /></div>
         </Title>
         <Supplementary as={mediaQuery.huge ? Rows : Columns}>
           <SubTitle fontSize={fontSize}>PORTFOLIO</SubTitle>
