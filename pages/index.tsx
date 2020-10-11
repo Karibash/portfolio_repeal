@@ -70,7 +70,7 @@ const IndexPage: React.FC = () => {
   const windowSize = useWindowSize();
   const mediaQuery = useMediaQueryContext();
   const fontSize = useAdaptiveFontSize({
-    tiny: 1,
+    tiny: windowSize.width * 0.004,
     small: 3,
     medium: 4,
   });
