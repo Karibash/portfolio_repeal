@@ -20,7 +20,7 @@ const Container = styled(Columns)<{
 `;
 
 const Title = styled.h1<{
-  fontSize: number;
+  readonly fontSize: number;
 }>`
   margin: 0;
   font-size: ${props => props.fontSize}rem;
@@ -44,7 +44,7 @@ const Supplementary = styled.div`
 `;
 
 const SubTitle = styled.h2<{
-  fontSize: number;
+  readonly fontSize: number;
 }>`
   margin: 0 2rem 0 0;
   font-size: ${props => props.fontSize}rem;
@@ -53,7 +53,7 @@ const SubTitle = styled.h2<{
 `;
 
 const Role = styled.div<{
-  fontSize: number;
+  readonly fontSize: number;
 }>`
   margin: .5rem 0;
   font-size: ${props => props.fontSize / 2}rem;
