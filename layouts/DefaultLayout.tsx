@@ -17,6 +17,7 @@ const Main = styled.main`
 
 const FixedBackground = styled(ParallaxParticles)`
   position: fixed;
+  z-index: -1;
   top: 0;
   bottom: 0;
   left: 0;
