@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 
 const Main = styled.main`
   position: relative;
-  min-width: 100vw;
+  width: 100vw;
   min-height: 100vh;
 `;
 
@@ -22,10 +22,8 @@ const FixedBackground = styled(ParallaxParticles)`
   bottom: 0;
   left: 0;
   right: 0;
-  width: 100%;
-  height: 100%;
-  min-width: 100vw;
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
 `;
 
 const FixedScreenDoorEffect = styled(ScreenDoorEffect)`
@@ -34,10 +32,8 @@ const FixedScreenDoorEffect = styled(ScreenDoorEffect)`
   bottom: 0;
   left: 0;
   right: 0;
-  width: 100%;
-  height: 100%;
-  min-width: 100vw;
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
 `;
 
 const DefaultLayout: React.FC<{
