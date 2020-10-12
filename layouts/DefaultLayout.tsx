@@ -7,7 +7,6 @@ import ScreenDoorEffect from "components/ScreenDoorEffect";
 
 const Wrapper = styled.div`
   color: ${props => props.theme.color.foreground[500].string()};
-  background-color: ${props => props.theme.color.background[500].string()};
 `;
 
 const Main = styled.main`

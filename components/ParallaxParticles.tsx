@@ -16,6 +16,9 @@ const ParallaxParticles: React.FC<Props> = ({
       options={{
         fpsLimit: 60,
         detectRetina: true,
+        background: {
+          color: theme.color.background[500].string(),
+        },
         particles: {
           color: theme.color.primary2[500].string(),
           number: {
