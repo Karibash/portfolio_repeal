@@ -72,6 +72,7 @@ const GlitchText: React.FC<Props> = ({
     <div className={className}>
       {text.split('').map(char => {
         return <GlitchChar
+          key={char}
           char={char}
           charColor={textColor}
           shadowColor={shadowColor}
