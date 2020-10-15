@@ -1,6 +1,48 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import Color from "color";
+import Color from 'color';
+import { keyframes } from '@emotion/react';
+
+const beforeKeyFrame = keyframes`
+  0% {
+    clip-path: inset(calc(75 * 1%) 0 0 0);
+  }
+  5% {
+    clip-path: inset(calc(65 * 1%) 0 0 0);
+  }
+  10% {
+    clip-path: inset(calc(15 * 1%) 0 0 0);
+  }
+  15% {
+    clip-path: inset(calc(40 * 1%) 0 0 0);
+  }
+  20% {
+    clip-path: inset(0 0 0 0);
+  }
+`;
+
+const afterKeyFrame = (shadowColor: Color) => keyframes`
+  0% {
+    clip-path: inset(0 0 calc(20 * 1%) 0);
+    transform: translate(calc(15 * 1%), 0);
+    text-shadow: -2px -2px ${shadowColor.string()};
+  }
+  5% {
+    clip-path: inset(0 0 calc(30 * 1%) 0);
+  }
+  10% {
+    clip-path: inset(0 0 calc(80 * 1%) 0);
+    transform: translate(calc(10 * 1%), 0);
+  }
+  15% {
+    clip-path: inset(0 0 calc(55 * 1%) 0);
+  }
+  20% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0, 0);
+    text-shadow: 0 0 ${shadowColor.string()};
+  }
+`;
 
 const GlitchChar = styled.span<{
   readonly char: string;
@@ -9,50 +51,23 @@ const GlitchChar = styled.span<{
 }>`
   color: transparent;
   position: relative;
-  animation: glitch 1.5s infinite ease-in-out alternate-reverse;
-  
-  &:after, &:before {
-    content: '${props => props.char}';
+
+  &:before, &:after {
     position: absolute;
+    content: '${props => props.char}';
     color: ${props => props.charColor.string()};
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-    clip-path: var(--clip);
   }
-  
-  &:after {
-    --clip: inset(0 0 calc(var(--split) * 1%) 0);
-    transform: translate(calc(var(--shift) * 1%), 0);
-    text-shadow: calc(var(--shadow) * 1px) calc(var(--shadow) * 1px) ${props => props.shadowColor.string()};
-  }
-  
+
   &:before {
-    --clip: inset(calc((95 - var(--split)) * 1%) 0 0 0);
+    animation: ${beforeKeyFrame} 1.5s infinite ease-in-out alternate;
   }
-  
-  @keyframes glitch {
-    0% {
-      --split: 20;
-      --shift: 15;
-      --shadow: -2;
-    }
-    5% {
-      --split: 30;
-    }
-    10% {
-      --split: 80;
-      --shift: 10;
-    }
-    15% {
-      --split: 55;
-    }
-    20% {
-      --split: 0;
-      --shift: 0;
-      --shadow: 0;
-    }
+
+  &:after {
+    animation: ${props => afterKeyFrame(props.shadowColor)} 1.5s infinite ease-in-out alternate;
   }
 `;
 
