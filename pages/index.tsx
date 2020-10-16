@@ -96,7 +96,7 @@ const IndexPage: React.FC = () => {
               <Role fontSize={fontSize}>BACKEND ENGINEER</Role>
             </Rows>
             <Rows>
-              <Role fontSize={fontSize}>NATIVE APPLICATION ENGINEER </Role>
+              <Role fontSize={fontSize}>NATIVE APPLICATION ENGINEER</Role>
               <Separation />
               <Role fontSize={fontSize}>DEVELOPER</Role>
             </Rows>
