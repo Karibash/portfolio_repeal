@@ -7,6 +7,9 @@ import GlitchText from 'components/GlitchText';
 import Rows from 'components/Rows';
 import { useMediaQueryContext } from 'contexts/useMediaQueryContext';
 import { useAdaptiveFontSize } from 'hooks/useAdaptiveFontSize';
+import { useAnimationFrameDelta } from 'hooks/useAnimationFrameDelta';
+import { useFlickerText } from 'hooks/useFlickerText';
+import { useFrame } from 'hooks/useFrame';
 import { useWindowSize } from 'hooks/useWindowSize';
 import DefaultLayout from 'layouts/DefaultLayout';
 
@@ -66,6 +69,12 @@ const Separation = styled.div`
 `;
 
 const IndexPage: React.FC = () => {
+  const animationFrameDelta = useAnimationFrameDelta();
+  const flickerTextFrame = useFrame(10, animationFrameDelta);
+  const flickerText = (text: string): string => {
+    return useFlickerText(text, 10, 0.005, [flickerTextFrame]);
+  };
+
   const theme = useTheme();
   const windowSize = useWindowSize();
   const mediaQuery = useMediaQueryContext();
@@ -84,21 +93,43 @@ const IndexPage: React.FC = () => {
     <DefaultLayout>
       <Container height={windowSize.height}>
         <Title fontSize={fontSize}>
-          <div>Hi<Emphasis>,</Emphasis> there</div>
-          <div>I<Emphasis>'</Emphasis>m <Name text="Karibash" {...glitchProperties} /></div>
+          <div>
+            {flickerText('Hi')}
+            <Emphasis>,</Emphasis>
+            {flickerText(' there')}
+          </div>
+          <div>
+            {flickerText('I')}
+            <Emphasis>'</Emphasis>
+            {flickerText('m ')}
+            <Name
+              text={flickerText('Karibash')}
+              {...glitchProperties}
+            />
+          </div>
         </Title>
         <Supplementary as={mediaQuery.huge ? Rows : Columns}>
-          <SubTitle fontSize={fontSize}>PORTFOLIO</SubTitle>
+          <SubTitle fontSize={fontSize}>
+            {flickerText('PORTFOLIO')}
+          </SubTitle>
           <Columns>
             <Rows>
-              <Role fontSize={fontSize}>FRONTEND ENGINEER</Role>
+              <Role fontSize={fontSize}>
+                {flickerText('FRONTEND ENGINEER')}
+              </Role>
               <Separation />
-              <Role fontSize={fontSize}>BACKEND ENGINEER</Role>
+              <Role fontSize={fontSize}>
+                {flickerText('BACKEND ENGINEER')}
+              </Role>
             </Rows>
             <Rows>
-              <Role fontSize={fontSize}>NATIVE APPLICATION ENGINEER</Role>
+              <Role fontSize={fontSize}>
+                {flickerText('NATIVE APPLICATION ENGINEER')}
+              </Role>
               <Separation />
-              <Role fontSize={fontSize}>DEVELOPER</Role>
+              <Role fontSize={fontSize}>
+                {flickerText('DEVELOPER')}
+              </Role>
             </Rows>
           </Columns>
         </Supplementary>
