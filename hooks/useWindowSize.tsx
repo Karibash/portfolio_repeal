@@ -4,9 +4,12 @@ import { useIsClient } from 'hooks/useIsClient';
 
 export const useWindowSize = () => {
   const isClient = useIsClient();
-  const [windowSize, setWindowSize] = useState({
-    width: 0,
-    height: 0,
+  const [windowSize, setWindowSize] = useState<{
+    readonly width: number | null;
+    readonly height: number | null;
+  }>({
+    width: null,
+    height: null,
   });
 
   useEffect(() => {
