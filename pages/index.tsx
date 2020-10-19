@@ -14,11 +14,11 @@ import { useWindowSize } from 'hooks/useWindowSize';
 import DefaultLayout from 'layouts/DefaultLayout';
 
 const Container = styled(Columns)<{
-  readonly height: number;
+  readonly height: number | null;
 }>`
   justify-content: flex-end;
   width: 100vw;
-  height: ${props => props.height}px;
+  height: ${props => props.height === null ? '100vh' : `${props.height}px`};
   padding: 2rem;
 `;
 
