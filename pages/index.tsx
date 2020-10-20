@@ -3,6 +3,7 @@ import { useTheme } from "@emotion/react";
 import styled from '@emotion/styled';
 
 import Columns from 'components/Columns';
+import FadeIn, {Direction} from 'components/FadeIn';
 import GlitchText from 'components/GlitchText';
 import Rows from 'components/Rows';
 import { useMediaQueryContext } from 'contexts/useMediaQueryContext';
@@ -84,54 +85,54 @@ const IndexPage: React.FC = () => {
     medium: 4,
   });
 
-  const glitchProperties = {
-    textColor: theme.color.foreground[500],
-    shadowColor: theme.color.primary3[500],
-  };
-
   return (
     <DefaultLayout>
       <Container height={windowSize.height}>
         <Title fontSize={fontSize}>
-          <div>
+          <FadeIn direction={Direction.LeftToRight} distance={2}>
             {flickerText('Hi')}
             <Emphasis>,</Emphasis>
             {flickerText(' there')}
-          </div>
-          <div>
+          </FadeIn>
+          <FadeIn direction={Direction.LeftToRight} distance={2}>
             {flickerText('I')}
             <Emphasis>'</Emphasis>
             {flickerText('m ')}
             <Name
               text={flickerText('Karibash')}
-              {...glitchProperties}
+              textColor={theme.color.foreground[500]}
+              shadowColor={theme.color.primary3[500]}
             />
-          </div>
+          </FadeIn>
         </Title>
         <Supplementary as={mediaQuery.huge ? Rows : Columns}>
-          <SubTitle fontSize={fontSize}>
-            {flickerText('PORTFOLIO')}
-          </SubTitle>
-          <Columns>
-            <Rows>
-              <Role fontSize={fontSize}>
-                {flickerText('FRONTEND ENGINEER')}
-              </Role>
-              <Separation />
-              <Role fontSize={fontSize}>
-                {flickerText('BACKEND ENGINEER')}
-              </Role>
-            </Rows>
-            <Rows>
-              <Role fontSize={fontSize}>
-                {flickerText('NATIVE APPLICATION ENGINEER')}
-              </Role>
-              <Separation />
-              <Role fontSize={fontSize}>
-                {flickerText('DEVELOPER')}
-              </Role>
-            </Rows>
-          </Columns>
+          <FadeIn direction={Direction.LeftToRight} distance={2} delay={100}>
+            <SubTitle fontSize={fontSize}>
+              {flickerText('PORTFOLIO')}
+            </SubTitle>
+          </FadeIn>
+          <FadeIn direction={Direction.LeftToRight} distance={2} delay={200}>
+            <Columns>
+              <Rows>
+                <Role fontSize={fontSize}>
+                  {flickerText('FRONTEND ENGINEER')}
+                </Role>
+                <Separation />
+                <Role fontSize={fontSize}>
+                  {flickerText('BACKEND ENGINEER')}
+                </Role>
+              </Rows>
+              <Rows>
+                <Role fontSize={fontSize}>
+                  {flickerText('NATIVE APPLICATION ENGINEER')}
+                </Role>
+                <Separation />
+                <Role fontSize={fontSize}>
+                  {flickerText('DEVELOPER')}
+                </Role>
+              </Rows>
+            </Columns>
+          </FadeIn>
         </Supplementary>
       </Container>
     </DefaultLayout>
