@@ -7,7 +7,7 @@ import FadeIn, {Direction} from 'components/FadeIn';
 import GlitchText from 'components/GlitchText';
 import Rows from 'components/Rows';
 import { useMediaQueryContext } from 'contexts/useMediaQueryContext';
-import { useAdaptiveFontSize } from 'hooks/useAdaptiveFontSize';
+import { useAdaptiveValue } from 'hooks/useAdaptiveValue';
 import { useAnimationFrameDelta } from 'hooks/useAnimationFrameDelta';
 import { useFlickerText } from 'hooks/useFlickerText';
 import { useFrame } from 'hooks/useFrame';
@@ -79,7 +79,7 @@ const IndexPage: React.FC = () => {
   const theme = useTheme();
   const windowSize = useWindowSize();
   const mediaQuery = useMediaQueryContext();
-  const fontSize = useAdaptiveFontSize({
+  const fontSize = useAdaptiveValue({
     tiny: windowSize.width * 0.004,
     small: 3,
     medium: 4,

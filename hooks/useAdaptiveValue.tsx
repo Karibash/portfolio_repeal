@@ -1,11 +1,11 @@
 import { Match, useMediaQueryContext } from 'contexts/useMediaQueryContext';
 
-export type Thresholds = {
-  readonly [K in Match]?: number;
+export type Thresholds<T> = {
+  readonly [K in Match]?: T;
 };
 
 // ToDo: I'll Refactor That Later. maybe later...
-export const useAdaptiveFontSize = (thresholds: Thresholds): number => {
+export const useAdaptiveValue = <T extends unknown> (thresholds: Thresholds<T>): T | null => {
   const mediaQuery = useMediaQueryContext();
   switch (true) {
     case mediaQuery.tiny:
@@ -19,6 +19,6 @@ export const useAdaptiveFontSize = (thresholds: Thresholds): number => {
     case mediaQuery.huge:
       return thresholds.huge ?? thresholds.large ?? thresholds.medium ?? thresholds.small ?? thresholds.tiny;
     default:
-      return 0;
+      return null;
   }
 };
