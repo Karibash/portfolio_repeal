@@ -2,8 +2,10 @@ import React from 'react';
 import { useTheme } from "@emotion/react";
 import styled from '@emotion/styled';
 
-import Columns from 'components/Columns';
+import { FlexDirection } from 'common/cssprops/FlexDirection';
+import { JustifyContent } from 'common/cssprops/JustifyContent';
 import FadeIn, { Direction } from 'components/FadeIn';
+import Flex from 'components/Flex';
 import GlitchText from 'components/GlitchText';
 import { useMediaQueryContext } from 'contexts/useMediaQueryContext';
 import { useAdaptiveValue } from 'hooks/useAdaptiveValue';
@@ -13,11 +15,9 @@ import { useFrame } from 'hooks/useFrame';
 import { useWindowSize } from 'hooks/useWindowSize';
 import DefaultLayout from 'layouts/DefaultLayout';
 
-const Container = styled(Columns)<{
-  readonly alignment: string;
+const Container = styled(Flex)<{
   readonly height: number | null;
 }>`
-  justify-content: ${props => props.alignment};
   width: 100vw;
   height: ${props => props.height === null ? '100vh' : `${props.height}px`};
   padding: 2rem;
@@ -41,7 +41,7 @@ const Name = styled(GlitchText)`
   font-weight: 500;
 `;
 
-const Supplementary = styled(Columns)`
+const Supplementary = styled(Flex)`
   margin: 0;
   font-weight: 300;
 `;
@@ -81,7 +81,11 @@ const IndexPage: React.FC = () => {
 
   return (
     <DefaultLayout>
-      <Container alignment={mediaQuery.tiny ? 'flex-end' : 'center'} height={windowSize.height}>
+      <Container
+        direction={FlexDirection.Column}
+        justifyContent={mediaQuery.tiny ? JustifyContent.FlexEnd : JustifyContent.Center}
+        height={windowSize.height}
+      >
         <Title fontSize={fontSize}>
           <FadeIn direction={Direction.LeftToRight} distance={2} delay={100}>
             {flickerText('Hi')}
@@ -102,7 +106,7 @@ const IndexPage: React.FC = () => {
         <FadeIn direction={Direction.LeftToRight} distance={2} delay={200}>
           <Separation width={fontSize*6} />
         </FadeIn>
-        <Supplementary>
+        <Supplementary direction={FlexDirection.Column}>
           <FadeIn direction={Direction.LeftToRight} distance={2} delay={250}>
             <Role fontSize={fontSize/4}>
               {flickerText('Frontend Engineer')}
