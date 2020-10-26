@@ -3,9 +3,8 @@ import { useTheme } from "@emotion/react";
 import styled from '@emotion/styled';
 
 import Columns from 'components/Columns';
-import FadeIn, {Direction} from 'components/FadeIn';
+import FadeIn, { Direction } from 'components/FadeIn';
 import GlitchText from 'components/GlitchText';
-import Rows from 'components/Rows';
 import { useMediaQueryContext } from 'contexts/useMediaQueryContext';
 import { useAdaptiveValue } from 'hooks/useAdaptiveValue';
 import { useAnimationFrameDelta } from 'hooks/useAnimationFrameDelta';
@@ -15,9 +14,10 @@ import { useWindowSize } from 'hooks/useWindowSize';
 import DefaultLayout from 'layouts/DefaultLayout';
 
 const Container = styled(Columns)<{
+  readonly alignment: string;
   readonly height: number | null;
 }>`
-  justify-content: flex-end;
+  justify-content: ${props => props.alignment};
   width: 100vw;
   height: ${props => props.height === null ? '100vh' : `${props.height}px`};
   padding: 2rem;
@@ -41,32 +41,26 @@ const Name = styled(GlitchText)`
   font-weight: 500;
 `;
 
-const Supplementary = styled.div`
+const Supplementary = styled(Columns)`
   margin: 0;
   font-weight: 300;
-  color: ${props => props.theme.color.primary3[500].string()};
-`;
-
-const SubTitle = styled.h2<{
-  readonly fontSize: number;
-}>`
-  margin: 0 2rem 0 0;
-  font-size: ${props => props.fontSize}rem;
-  font-weight: 300;
-  color: ${props => props.theme.color.primary3[500].string()};
 `;
 
 const Role = styled.div<{
   readonly fontSize: number;
 }>`
   margin: .5rem 0;
-  font-size: ${props => props.fontSize / 2}rem;
+  font-size: ${props => props.fontSize}rem;
   line-height: 1;
 `;
 
-const Separation = styled.div`
-  margin: 0 1rem;
-  border-left: 1px solid ${props => props.theme.color.primary3[500].string()};
+const Separation = styled.hr<{
+  readonly width: number;
+}>`
+  width: ${props => props.width}rem;
+  margin: 1rem 0;
+  border: 0;
+  border-top: 1px solid ${props => props.theme.color.primary3[500].string()};
 `;
 
 const IndexPage: React.FC = () => {
@@ -80,21 +74,21 @@ const IndexPage: React.FC = () => {
   const windowSize = useWindowSize();
   const mediaQuery = useMediaQueryContext();
   const fontSize = useAdaptiveValue({
-    tiny: windowSize.width * 0.004,
-    small: 3,
-    medium: 4,
+    tiny: windowSize.width * 0.008,
+    small: 5,
+    medium: 6,
   });
 
   return (
     <DefaultLayout>
-      <Container height={windowSize.height}>
+      <Container alignment={mediaQuery.tiny ? 'flex-end' : 'center'} height={windowSize.height}>
         <Title fontSize={fontSize}>
-          <FadeIn direction={Direction.LeftToRight} distance={2}>
+          <FadeIn direction={Direction.LeftToRight} distance={2} delay={100}>
             {flickerText('Hi')}
             <Emphasis>,</Emphasis>
             {flickerText(' there')}
           </FadeIn>
-          <FadeIn direction={Direction.LeftToRight} distance={2}>
+          <FadeIn direction={Direction.LeftToRight} distance={2} delay={150}>
             {flickerText('I')}
             <Emphasis>'</Emphasis>
             {flickerText('m ')}
@@ -105,33 +99,24 @@ const IndexPage: React.FC = () => {
             />
           </FadeIn>
         </Title>
-        <Supplementary as={mediaQuery.huge ? Rows : Columns}>
-          <FadeIn direction={Direction.LeftToRight} distance={2} delay={100}>
-            <SubTitle fontSize={fontSize}>
-              {flickerText('PORTFOLIO')}
-            </SubTitle>
+        <FadeIn direction={Direction.LeftToRight} distance={2} delay={200}>
+          <Separation width={fontSize*6} />
+        </FadeIn>
+        <Supplementary>
+          <FadeIn direction={Direction.LeftToRight} distance={2} delay={250}>
+            <Role fontSize={fontSize/4}>
+              {flickerText('Frontend Engineer')}
+            </Role>
           </FadeIn>
-          <FadeIn direction={Direction.LeftToRight} distance={2} delay={200}>
-            <Columns>
-              <Rows>
-                <Role fontSize={fontSize}>
-                  {flickerText('FRONTEND ENGINEER')}
-                </Role>
-                <Separation />
-                <Role fontSize={fontSize}>
-                  {flickerText('BACKEND ENGINEER')}
-                </Role>
-              </Rows>
-              <Rows>
-                <Role fontSize={fontSize}>
-                  {flickerText('NATIVE APPLICATION ENGINEER')}
-                </Role>
-                <Separation />
-                <Role fontSize={fontSize}>
-                  {flickerText('DEVELOPER')}
-                </Role>
-              </Rows>
-            </Columns>
+          <FadeIn direction={Direction.LeftToRight} distance={2} delay={300}>
+            <Role fontSize={fontSize/4}>
+              {flickerText('Backend Engineer')}
+            </Role>
+          </FadeIn>
+          <FadeIn direction={Direction.LeftToRight} distance={2} delay={350}>
+            <Role fontSize={fontSize/4}>
+              {flickerText('Native Application Engineer')}
+            </Role>
           </FadeIn>
         </Supplementary>
       </Container>
