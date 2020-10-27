@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import { AlignContent } from 'common/cssprops/AlignContent';
-import { AlignItems } from 'common/cssprops/AlignItems';
-import { FlexDirection } from 'common/cssprops/FlexDirection';
-import { JustifyContent } from 'common/cssprops/JustifyContent';
+import { AlignContent, AlignItems, FlexDirection, JustifyContent } from 'types/cssprops';
 
 const Container = styled.div<{
   readonly direction: FlexDirection;
@@ -29,10 +26,10 @@ type Props = {
 const Flex: React.FC<Props> = ({
   children,
   className = '',
-  direction = FlexDirection.Row,
-  justifyContent = JustifyContent.Initial,
-  alignContent = AlignContent.Initial,
-  alignItems = AlignItems.Initial,
+  direction = 'row',
+  justifyContent = 'initial',
+  alignContent = 'initial',
+  alignItems = 'initial',
 }) => {
   return (
     <Container

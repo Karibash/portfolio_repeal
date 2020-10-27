@@ -2,8 +2,6 @@ import React from 'react';
 import { useTheme } from "@emotion/react";
 import styled from '@emotion/styled';
 
-import { FlexDirection } from 'common/cssprops/FlexDirection';
-import { JustifyContent } from 'common/cssprops/JustifyContent';
 import FadeIn, { Direction } from 'components/FadeIn';
 import Flex from 'components/Flex';
 import GlitchText from 'components/GlitchText';
@@ -82,8 +80,8 @@ const IndexPage: React.FC = () => {
   return (
     <DefaultLayout>
       <Container
-        direction={FlexDirection.Column}
-        justifyContent={mediaQuery.tiny ? JustifyContent.FlexEnd : JustifyContent.Center}
+        direction={'column'}
+        justifyContent={mediaQuery.tiny ? 'flex-end' : 'center'}
         height={windowSize.height}
       >
         <Title fontSize={fontSize}>
@@ -106,7 +104,7 @@ const IndexPage: React.FC = () => {
         <FadeIn direction={Direction.LeftToRight} distance={2} delay={200}>
           <Separation width={fontSize*6} />
         </FadeIn>
-        <Supplementary direction={FlexDirection.Column}>
+        <Supplementary direction={'column'}>
           <FadeIn direction={Direction.LeftToRight} distance={2} delay={250}>
             <Role fontSize={fontSize/4}>
               {flickerText('Frontend Engineer')}
